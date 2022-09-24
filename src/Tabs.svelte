@@ -3,10 +3,12 @@
 </script>
 
 <script>
-  import { afterUpdate, setContext, onDestroy, onMount, tick } from 'svelte';
+  import { afterUpdate, setContext, onDestroy, onMount, createEventDispatcher } from 'svelte';
   import { writable } from 'svelte/store';
 
   export let selectedTabIndex = 0;
+
+  const dispatch = createEventDispatcher();
 
   const tabElements = [];
   const tabs = [];
@@ -34,6 +36,7 @@
     selectedTabIndex = tabs.indexOf(tab);
     selectedTab.set(tab);
     selectedPanel.set(panels[selectedTabIndex]);
+    dispatch('tabChanged', {selectedTabIndex});
   }
 
   setContext(TABS, {
@@ -70,8 +73,7 @@
   });
 
   $: selectedTabIndex, ()=>{
-    selectedTab.set(tabs[selectedTabIndex]);
-    selectedPanel.set(panels[selectedTabIndex]);
+    selectTab(selectedTabIndex);
   };
 
   async function handleKeyDown(event) {

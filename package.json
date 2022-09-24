@@ -1,6 +1,6 @@
 {
-  "name": "svelte-tabs",
-  "version": "1.2.0",
+  "name": "@master-technology/svelte-tabs",
+  "version": "1.2.1",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
