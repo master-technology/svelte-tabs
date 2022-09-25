@@ -33,11 +33,21 @@
   }
 
   function selectTab(tab) {
-    selectedTabIndex = tabs.indexOf(tab);
+    if (!tab) return;
+    let idx = tabs.indexOf(tab);
+    if (idx < 0) return;
+    selectedTabIndex = idx;
+
     selectedTab.set(tab);
     selectedPanel.set(panels[selectedTabIndex]);
     dispatch('tabChanged', {selectedTabIndex});
   }
+
+  function selectTabByIndex(idx) {
+    if (!tabs.length) return;
+    selectTab(tabs[idx]);
+  }
+
 
   setContext(TABS, {
     registerTab(tab) {
@@ -72,9 +82,7 @@
     }
   });
 
-  $: selectedTabIndex, ()=>{
-    selectTab(selectedTabIndex);
-  };
+  $: selectTabByIndex(selectedTabIndex);
 
   async function handleKeyDown(event) {
     if (event.target.classList.contains('svelte-tabs__tab')) {
