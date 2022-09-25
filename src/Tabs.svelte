@@ -45,6 +45,7 @@
 
   function selectTabByIndex(idx) {
     if (!tabs.length) return;
+    if (idx === selectedTabIndex) return;
     selectTab(tabs[idx]);
   }
 
