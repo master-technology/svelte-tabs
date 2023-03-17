@@ -4,11 +4,14 @@
   import getId from './id';
   import { TABS } from './Tabs.svelte';
 
-  const panel = {
-    id: getId()
-  };
-  const { registerPanel, selectedPanel, labeledBy } = getContext(TABS);
+  export let delay=true;
 
+  const panel = {
+    id: getId(),
+    rendered: !(delay === true ? delay : delay === "true")
+  };
+
+  const { registerPanel, selectedPanel, labeledBy } = getContext(TABS);
   registerPanel(panel);
 </script>
 
@@ -23,5 +26,7 @@
   aria-labelledby={$labeledBy[panel.id]}
   class="svelte-tabs__tab-panel"
   role="tabpanel" hidden={$selectedPanel !== panel}>
+    {#if $selectedPanel === panel || panel.rendered}
     <slot></slot>
+    {/if}
 </div>

@@ -40,6 +40,7 @@
 
     selectedTab.set(tab);
     selectedPanel.set(panels[selectedTabIndex]);
+    panels[selectedTabIndex].rendered = true;
     dispatch('tabChanged', {selectedTabIndex});
   }
 
