@@ -1,16 +1,22 @@
 # svelte-tabs
 
-A tabs component for Svelte
+A more up to date and performant tabs component for Svelte, forked from: https://github.com/nickyhajal/svelte-tabs
+
+New Features/Fixes:
+- Performance: Supportes Delayed Rendering of Tab content (`delay` on tabPanel defaults to `true`), this basically means anything inside a unshown tab is not mounted/rendered until it is shown.
+- Feature: `selectedTabIndex` is now two way bound allowing you to change the tab by setting this value at any time.
+- The full `TabPanel` component is hidden if it isn't active, so that it has no effect on the DOM when you switch tabs.
+
 
 ## Installation
 
-    npm install --save svelte-tabs
+    npm install --save @master.technology/svelte-tabs
 
 ## Basic usage
 
 ```html
 <script>
-  import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
+  import { Tabs, Tab, TabList, TabPanel } from '@master.technology/svelte-tabs';
 </script>
 
 <Tabs>
@@ -24,11 +30,11 @@ A tabs component for Svelte
     <h2>Panel One</h2>
   </TabPanel>
 
-  <TabPanel>
+  <TabPanel delay=false>
     <h2>Panel Two</h2>
   </TabPanel>
 
-  <TabPanel>
+  <TabPanel delay=true>
     <h2>Panel Three</h2>
   </TabPanel>
 </Tabs>

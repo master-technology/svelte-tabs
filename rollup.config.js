@@ -1,6 +1,5 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
-// import postcss from "rollup-plugin-postcss";
 import css from "rollup-plugin-import-css";
 import pkg from "./package.json";
 

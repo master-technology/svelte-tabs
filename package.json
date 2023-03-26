@@ -1,6 +1,6 @@
 {
-  "name": "@master-technology/svelte-tabs",
-  "version": "1.2.2",
+  "name": "@master.technology/svelte-tabs",
+  "version": "1.2.3",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -21,7 +21,8 @@
     "rollup": "^2.53.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.38.3"
+    "svelte": "^3.38.3",
+    "rollup-plugin-import-css": "^3.0.0"
   },
   "keywords": [
     "svelte",
@@ -30,14 +31,15 @@
   "license": "MIT",
   "contributors": [
     "Rich Harris",
-    "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)"
+    "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
+    "Nathanael Anderson <nathan@master.technology> (https://master.technology)"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/joeattardi/svelte-tabs.git"
+    "url": "https://github.com/master-technology/svelte-tabs.git"
   },
   "bugs": {
-    "url": "https://github.com/joeattardi/svelte-tabs/issues"
+    "url": "https://github.com/master-technology/svelte-tabs/issues"
   },
   "files": [
     "dist",
@@ -47,9 +49,5 @@
     "src/TabList.svelte",
     "src/TabPanel.svelte",
     "src/Tabs.svelte"
-  ],
-  "dependencies": {
-    "rollup-plugin-import-css": "^3.0.0",
-    "rollup-plugin-postcss": "^4.0.0"
-  }
+  ]
 }
