@@ -5,9 +5,11 @@
   import { TABS } from './Tabs.svelte';
 
   let tabEl;
+  export let name=null;
 
   const tab = {
-    id: getId()
+    id: getId(),
+    name: name,
   };
   const { registerTab, registerTabElement, selectTab, selectedTab, controls } = getContext(TABS);
 

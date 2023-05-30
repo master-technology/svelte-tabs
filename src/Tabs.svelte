@@ -41,7 +41,7 @@
     selectedTab.set(tab);
     selectedPanel.set(panels[selectedTabIndex]);
     panels[selectedTabIndex].rendered = true;
-    dispatch('tabChanged', {selectedTabIndex});
+    dispatch('tabChanged', {selectedTabIndex, name: tab.name});
   }
 
   function selectTabByIndex(idx) {
@@ -50,6 +50,16 @@
     selectTab(tabs[idx]);
   }
 
+  export function selectTabByName(name) {
+    if (name == null || !tabs.length) return;
+    if (tabs[selectedTabIndex].name === name) return;
+    for (let i=0;i<tabs.length;i++) {
+      if (tabs[i].name === name) {
+        selectTab(tabs[i]);
+        break;
+      }
+    }
+  }
 
   setContext(TABS, {
     registerTab(tab) {
