@@ -1,28 +1,27 @@
 {
   "name": "@master.technology/svelte-tabs",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "private": false,
   "access": "public",
+  "exports": {
+    ".": {
+      "svelte": "./src/index.js"
+    }
+  },
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -cw",
-    "test": "jest",
-    "test:watch": "jest --watch",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.0.0",
-    "@testing-library/svelte": "^1.8.0",
-    "jest": "^24.8.0",
-    "jest-transform-svelte": "^2.0.2",
-    "rollup": "^2.53.2",
+    "rollup": "^4.18.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-svelte": "^7.1.0",
-    "svelte": "^3.38.3",
-    "rollup-plugin-import-css": "^3.0.0"
+    "rollup-plugin-svelte": "^7.2.0",
+    "svelte": "^4.2.17",
+    "rollup-plugin-import-css": "^3.5.0"
   },
   "keywords": [
     "svelte",
