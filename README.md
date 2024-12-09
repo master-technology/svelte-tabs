@@ -3,7 +3,7 @@
 A more up to date and performant tabs component for Svelte, forked from: https://github.com/nickyhajal/svelte-tabs
 
 New Features/Fixes:
-- Performance: Supportes Delayed Rendering of Tab content (`delay` on tabPanel defaults to `true`), this basically means anything inside a unshown tab is not mounted/rendered until it is shown.
+- Performance: Supports Delayed Rendering of Tab content (`delay` on tabPanel defaults to `true`), this basically means anything inside a unshown tab is not mounted/rendered until it is shown.
 - Feature: `selectedTabIndex` is now two way bound allowing you to change the tab by setting this value at any time.
 - The full `TabPanel` component is hidden if it isn't active, so that it has no effect on the DOM when you switch tabs.
 
