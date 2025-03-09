@@ -2,19 +2,25 @@
   import { getContext, onMount, tick } from 'svelte';
 
   import getId from './id';
-  import { TABS } from './Tabs.svelte';
 
-  let tabEl;
-  export let name=null;
+  let tabEl = $state();
+  /**
+   * @typedef {Object} Props
+   * @property {any} [name]
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let { name = null, children } = $props();
 
   const tab = {
     id: getId(),
     name: name,
   };
-  const { registerTab, registerTabElement, selectTab, selectedTab, controls } = getContext(TABS);
+  const { registerTab, registerTabElement, selectTab, selectedTab, controls } = getContext("TABS");
 
-  let isSelected;
-  $: isSelected = $selectedTab === tab;
+  let isSelected = $derived($selectedTab === tab);
+  
 
   registerTab(tab);
 
@@ -45,7 +51,7 @@
 	}
 </style>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role, a11y_click_events_have_key_events -->
 <li
   bind:this={tabEl}
   role="tab"
@@ -55,6 +61,6 @@
   tabindex="{isSelected ? 0 : -1}"
   class:svelte-tabs__selected={isSelected}
   class="svelte-tabs__tab"
-  on:click={() => selectTab(tab)}>
-	<slot></slot>
+  onclick={() => selectTab(tab)}>
+	{@render children?.()}
 </li>

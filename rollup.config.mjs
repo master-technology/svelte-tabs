@@ -14,6 +14,6 @@ export default {
     { file: pkg.module, format: "es" },
     { file: pkg.main, format: "umd", name },
   ],
-  external: ["svelte/internal", "svelte/store", "svelte/internal/disclose-version"],
+  external: ["svelte/internal", "svelte/store", "svelte/internal/disclose-version", "svelte/internal/client", "svelte/legacy"],
   plugins: [svelte(), resolve(), css()],
 };

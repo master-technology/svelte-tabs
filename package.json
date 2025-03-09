@@ -1,6 +1,6 @@
 {
   "name": "@master.technology/svelte-tabs",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -17,11 +17,11 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "rollup": "^4.18.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-svelte": "^7.2.0",
-    "svelte": "^4.2.17",
-    "rollup-plugin-import-css": "^3.5.0"
+    "rollup": "^4.35.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup-plugin-svelte": "^7.2.2",
+    "svelte": "^5.22.6",
+    "rollup-plugin-import-css": "^3.5.8"
   },
   "keywords": [
     "svelte",

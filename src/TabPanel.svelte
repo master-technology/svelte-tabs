@@ -2,16 +2,22 @@
   import { getContext } from 'svelte';
 
   import getId from './id';
-  import { TABS } from './Tabs.svelte';
 
-  export let delay=true;
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [delay]
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let { delay = true, children } = $props();
 
   const panel = {
     id: getId(),
     rendered: !(delay === true ? delay : delay === "true")
   };
 
-  const { registerPanel, selectedPanel, labeledBy } = getContext(TABS);
+  const { registerPanel, selectedPanel, labeledBy } = getContext('TABS');
   registerPanel(panel);
 </script>
 
@@ -27,6 +33,6 @@
   class="svelte-tabs__tab-panel"
   role="tabpanel" hidden={$selectedPanel !== panel}>
     {#if $selectedPanel === panel || panel.rendered}
-    <slot></slot>
+    {@render children?.()}
     {/if}
 </div>

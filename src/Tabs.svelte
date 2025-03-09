@@ -1,12 +1,18 @@
-<script context="module">
-  export const TABS = {};
-</script>
-
 <script>
-  import { afterUpdate, setContext, onDestroy, onMount, createEventDispatcher } from 'svelte';
+  import { run } from 'svelte/legacy';
+
+  import { tick, setContext, onDestroy, onMount, createEventDispatcher } from 'svelte';
   import { writable } from 'svelte/store';
 
-  export let selectedTabIndex = 0;
+  /**
+   * @typedef {Object} Props
+   * @property {number} [selectedTabIndex]
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let { selectedTabIndex = $bindable(0), children } = $props();
+
 
   const dispatch = createEventDispatcher();
 
@@ -61,7 +67,7 @@
     }
   }
 
-  setContext(TABS, {
+  setContext('TABS', {
     registerTab(tab) {
       registerItem(tabs, tab, selectedTab);
     },
@@ -87,14 +93,16 @@
     selectTab(tabs[selectedTabIndex]);
   });
 
-  afterUpdate(() => {
+  tick(() => {
     for (let i = 0; i < tabs.length; i++) {
       controls.update(controlsData => ({...controlsData, [tabs[i].id]: panels[i].id}));
       labeledBy.update(labeledByData => ({...labeledByData, [panels[i].id]: tabs[i].id}));
     }
   });
 
-  $: selectTabByIndex(selectedTabIndex);
+  run(() => {
+    selectTabByIndex(selectedTabIndex);
+  });
 
   async function handleKeyDown(event) {
     if (event.target.classList.contains('svelte-tabs__tab')) {
@@ -122,6 +130,6 @@
   }
 </script>
 
-<div class="svelte-tabs" on:keydown={handleKeyDown} role="tablist" tabindex="0">
-  <slot></slot>
+<div class="svelte-tabs" onkeydown={handleKeyDown} role="tablist" tabindex="0">
+  {@render children?.()}
 </div>
