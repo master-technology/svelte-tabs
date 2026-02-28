@@ -1,5 +1,5 @@
 import svelte from "rollup-plugin-svelte";
-import resolve from "rollup-plugin-node-resolve";
+import resolve from "@rollup/plugin-node-resolve";
 import css from "rollup-plugin-import-css";
 import pkg from "./package.json" with { type: "json" };
 
