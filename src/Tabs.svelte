@@ -1,20 +1,19 @@
 <script>
-  import { run } from 'svelte/legacy';
 
-  import { tick, setContext, onDestroy, onMount, createEventDispatcher } from 'svelte';
+  import { tick, setContext, onDestroy, onMount  } from 'svelte';
   import { writable } from 'svelte/store';
 
   /**
    * @typedef {Object} Props
    * @property {number} [selectedTabIndex]
    * @property {import('svelte').Snippet} [children]
+   * @property {({selectedTabIndex: number, name: string}) => void} [tabChanged]
    */
 
   /** @type {Props} */
-  let { selectedTabIndex = $bindable(0), children } = $props();
+  let { selectedTabIndex = $bindable(0), children, tabChanged = () => {} } = $props();
 
 
-  const dispatch = createEventDispatcher();
 
   const tabElements = [];
   const tabs = [];
@@ -47,7 +46,7 @@
     selectedTab.set(tab);
     selectedPanel.set(panels[selectedTabIndex]);
     panels[selectedTabIndex].rendered = true;
-    dispatch('tabChanged', {selectedTabIndex, name: tab.name});
+    tabChanged({selectedTabIndex, name: tab.name});
   }
 
   function selectTabByIndex(idx) {
@@ -60,9 +59,9 @@
     if (name == null || !tabs.length) return;
     if (tabs[selectedTabIndex].name === name) return;
     for (let i=0;i<tabs.length;i++) {
-      if (tabs[i].name === name) {
+      if (tabs[i].name.toUpperCase() === name.toLowerCase()) {
         selectTab(tabs[i]);
-        break;
+        return;
       }
     }
   }
@@ -100,7 +99,7 @@
     }
   });
 
-  run(() => {
+  $effect.pre(() => {
     selectTabByIndex(selectedTabIndex);
   });
 

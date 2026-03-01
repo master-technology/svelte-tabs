@@ -13,14 +13,14 @@
   /** @type {Props} */
   let { name = null, children } = $props();
 
+  // svelte-ignore state_referenced_locally
   const tab = {
     id: getId(),
-    name: name,
+    name: name  // TAB Name is static once set, it is NOT updatable
   };
   const { registerTab, registerTabElement, selectTab, selectedTab, controls } = getContext("TABS");
 
   let isSelected = $derived($selectedTab === tab);
-  
 
   registerTab(tab);
 
@@ -35,19 +35,19 @@
 		border: none;
 		border-bottom: 2px solid transparent;
 		color: #000000;
-    cursor: pointer;
-    list-style: none;
-    display: inline-block;
-    padding: 0.5em 0.75em;
+    	cursor: pointer;
+    	list-style: none;
+    	display: inline-block;
+    	padding: 0.5em 0.75em;
 	}
 	
-  .svelte-tabs__tab:focus {
-    outline: thin dotted;
-  }
+    .svelte-tabs__tab:focus {
+   		outline: thin dotted;
+  	}
 
 	.svelte-tabs__selected {
 		border-bottom: 2px solid #4F81E5;
-    color: #4F81E5;
+    	color: #4F81E5;
 	}
 </style>
 

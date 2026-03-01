@@ -12,9 +12,10 @@
   /** @type {Props} */
   let { delay = true, children } = $props();
 
+  // svelte-ignore state_referenced_locally
   const panel = {
     id: getId(),
-    rendered: !(delay === true ? delay : delay === "true")
+    rendered: !(delay === true ? delay : delay === "true"),  // Delay is only SET at setup, it isn't updatable
   };
 
   const { registerPanel, selectedPanel, labeledBy } = getContext('TABS');
